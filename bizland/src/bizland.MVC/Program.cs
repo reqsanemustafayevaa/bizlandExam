@@ -1,8 +1,10 @@
 using bizland.business.Services.Implementations;
 using bizland.business.Services.Interfaces;
+using bizland.core.Models;
 using bizland.core.Repositories.Interfaces;
 using bizland.data.DAL;
 using bizland.data.Repository.Implementations;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,8 +15,16 @@ builder.Services.AddDbContext<AppDbContext>(opt =>
 {
     opt.UseSqlServer("server=DESKTOP-4T5RTRO;database=teammember;Trusted_Connection=True;");
 });
+builder.Services.AddIdentity<AppUser,IdentityRole>(opt =>
+{
+    opt.Password.RequiredLength = 8;
+    opt.Password.RequireDigit = true;
+    opt.Password.RequireLowercase = true;
+    opt.Password.RequireUppercase = true;
+}).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 builder.Services.AddScoped<ITeamMemberRepository,TeamMemberRepository>();
 builder.Services.AddScoped<ITeamMemberService,TeamMemberService>();
+builder.Services.AddScoped<IAccountService,AccountService>();
 
 var app = builder.Build();
 
