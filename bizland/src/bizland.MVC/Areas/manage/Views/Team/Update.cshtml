@@ -1,0 +1,46 @@
+﻿﻿﻿
+@model TeamMember
+<div class="container-fluid">
+    <h1>Update</h1>
+    <form method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label asp-for="FullName" class="form-label">FullName</label>
+            <input asp-for="FullName" class="form-control">
+            <span asp-validation-for="FullName"></span>
+
+        </div>
+        <div class="mb-3">
+            <label asp-for="Profession" class="form-label">Profession</label>
+            <input asp-for="Profession" class="form-control">
+            <span asp-validation-for="Profession"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="InstaUrl" class="form-label">Profession</label>
+            <input asp-for="InstaUrl" class="form-control">
+            <span asp-validation-for="InstaUrl"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="FbUrl" class="form-label">FbUrl</label>
+            <input asp-for="FbUrl" class="form-control">
+            <span asp-validation-for="FbUrl"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="TwitterUrl" class="form-label">TwitterUrl</label>
+            <input asp-for="TwitterUrl" class="form-control">
+            <span asp-validation-for="TwitterUrl"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="LinkEdinUrl" class="form-label">LinkEdinUrl</label>
+            <input asp-for="LinkEdinUrl" class="form-control">
+            <span asp-validation-for="LinkEdinUrl"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="ImageFile" class="form-label">Title</label>
+            <input asp-for="ImageFile" class="form-control">
+            <span asp-validation-for="ImageFile"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</div>
+<div asp-validation-summary="ModelOnly"></div>

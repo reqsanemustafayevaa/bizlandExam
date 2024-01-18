@@ -1,4 +1,8 @@
+using bizland.business.Services.Implementations;
+using bizland.business.Services.Interfaces;
+using bizland.core.Repositories.Interfaces;
 using bizland.data.DAL;
+using bizland.data.Repository.Implementations;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +13,8 @@ builder.Services.AddDbContext<AppDbContext>(opt =>
 {
     opt.UseSqlServer("server=DESKTOP-4T5RTRO;database=teammember;Trusted_Connection=True;");
 });
+builder.Services.AddScoped<ITeamMemberRepository,TeamMemberRepository>();
+builder.Services.AddScoped<ITeamMemberService,TeamMemberService>();
 
 var app = builder.Build();
 
@@ -26,6 +32,10 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+app.MapControllerRoute(
+            name: "areas",
+            pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+          );
 
 app.MapControllerRoute(
     name: "default",
